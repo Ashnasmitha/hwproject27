@@ -13,34 +13,20 @@ function setup() {
 	engine = Engine.create();
 	world = engine.world;
 	
-    fill("dimgrey");
-	roof= Bodies.rectangle(350,50,600,20, {isStatic:true});
-	World.add(world,roof);
-	
-	
-	bob1 = new Bob(190,500);
-	bob2 = new Bob(270,500);
-	bob3 = new Bob(350,500);
-	bob4 = new Bob(430,500);
-  bob5 = new Bob(510,500);
-  
-  World.add(world,bob1);
-  World.add(world,bob2);
-  World.add(world,bob3);
-  World.add(world,bob4);
-  World.add(world,bob5);
+	roof = new Roof();
 
-	rope1 = new Rope(bob1.body,roof.body,-80,0);
-	rope2 = new Rope(bob2.body,roof.body,-40,0);
-	rope3 = new Rope(bob3.body,roof.body,0,0);
-	rope4 = new Rope(bob4.body,roof.body,+40,0);
-  rope5 = new Rope(bob5.body,roof.body,+40,0);
+	bob1 = new Bob(150,500);
+	bob2 = new Bob(250,500);
+	bob3 = new Bob(350,500);
+	bob4 = new Bob(450,500);
+  bob5 = new Bob(550,500);
   
-  World.add(world,rope1);
-  World.add(world,rope2);
-  World.add(world,rope3);
-  World.add(world,rope4);
-  World.add(world,rope5);
+
+	rope1 = new Rope(bob1.body,roof.body,-200,0);
+	rope2 = new Rope(bob2.body,roof.body,-100,0);
+	rope3 = new Rope(bob3.body,roof.body,0,0);
+	rope4 = new Rope(bob4.body,roof.body,+100,0);
+  rope5 = new Rope(bob5.body,roof.body,+200,0);
 
 
 	Engine.run(engine);
@@ -52,9 +38,14 @@ function draw() {
   
   background("gainsboro");
   Engine.update(engine);
-  rectMode(CENTER);
-  rect(roof.position.x,roof.position.y,600,20);
+
+  roof.display();
  
+  rope1.display();
+  rope2.display();
+  rope3.display();
+  rope4.display();
+  rope5.display();
 
   bob1.display();
   bob2.display();
@@ -62,21 +53,13 @@ function draw() {
   bob4.display();
   bob5.display();
 
-  rope1.display();
-  rope2.display();
-  rope3.display();
-  rope4.display();
-  rope5.display();
-
- 
-  
   drawSprites();
  
 }
 
 function keyPressed(){
   if(keyCode === UP_ARROW){
-    Matter.Body.applyForce(bob5.body,bob5.body.position,{x:-730,y:0});
+    Matter.Body.applyForce(bob5.body,bob5.body.position,{x:780,y:0});
   }
 }
 

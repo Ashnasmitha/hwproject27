@@ -7,14 +7,22 @@ class Bob
             friction:0.5,
             density:1.2
         }
-        this.body=Bodies.circle(x,y,40,options);
+        this.x=x;
+        this.y=y;
+        
+
+        this.body=Bodies.circle(x,y,50,options);
         World.add(world,this.body);
       
     }
     display()
     {
+        var bobpos=this.body.position;
+        push();
+        translate(bobpos.x, bobpos.y);
         ellipseMode(RADIUS);
         fill ("deepPink");
-        ellipse(this.body.position.x,this.body.position.y,40,40); 
+        ellipse(0,0,50,50);
+        pop();
     }
 }
